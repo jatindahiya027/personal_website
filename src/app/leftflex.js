@@ -260,7 +260,7 @@ export default function Leftflex() {
         {isMobile || isTab ? (
           <>
             <Image
-              src="/final2.png" // Update with the path to your image
+              src="/final4.png" // Update with the path to your image
               alt="Description"
               width={700} // Specify the width of the image
               height={300} // Specify the height of the image
@@ -324,7 +324,7 @@ export default function Leftflex() {
         ) : (
           <>
             <Image
-              src="/final.png" // Update with the path to your image
+              src="/final3.png" // Update with the path to your image
               alt="Description"
               width={550} // Specify the width of the image
               height={300} // Specify the height of the image
@@ -392,7 +392,7 @@ export default function Leftflex() {
           <div className="profilediv">
             <div className="profiledivdiv">
               <Image
-                src="/me.png" // Update with the path to your image
+                src="/me2.png" // Update with the path to your image
                 alt="Description"
                 width={244} // Specify the width of the image
                 height={364} // Specify the height of the image
@@ -881,7 +881,7 @@ export default function Leftflex() {
               className="setmargin center"
             >
               <Image alt="github" src="/github.png" width={30} height={30} />
-              Git Repository
+              Code
             </a>
             <div className="techstack setmargin">
               <p>Electron js</p>
@@ -1036,7 +1036,7 @@ export default function Leftflex() {
               className="setmargin center"
             >
               <Image alt="github" src="/github.png" width={30} height={30} />
-              Git Repository
+              Code
             </a>
             <div className="techstack setmargin">
               <p>Nextjs</p>
@@ -1205,7 +1205,7 @@ export default function Leftflex() {
               className="setmargin center"
             >
               <Image alt="github" src="/github.png" width={30} height={30} />
-              Git Repository
+              Code
             </a>
 
             <div className="techstack setmargin">
