@@ -721,7 +721,7 @@ export default function Leftflex() {
               onClick={() => scrollToSection("proj3")}
             />
           </motion.div>
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -768,7 +768,7 @@ export default function Leftflex() {
               height={100} // Specify the height of the image
               className="projimage"
             />
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
       <div ref={sectionRefs.proj1} className="Projectheading">
