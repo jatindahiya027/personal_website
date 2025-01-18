@@ -265,6 +265,7 @@ export default function Leftflex() {
               width={700} // Specify the width of the image
               height={300} // Specify the height of the image
               className="centeredImage"
+              quality={80}
             />
 
             <InfiniteTextRotation />
@@ -329,6 +330,7 @@ export default function Leftflex() {
               width={550} // Specify the width of the image
               height={300} // Specify the height of the image
               className="centeredImage"
+              quality={80}
             />
 
             <InfiniteTextRotation />
@@ -397,6 +399,7 @@ export default function Leftflex() {
                 width={244} // Specify the width of the image
                 height={364} // Specify the height of the image
                 className="meimage"
+                quality={96}
               />
               <p className="profilep2">Jatin Dahiya</p>
               <motion.p
@@ -800,37 +803,41 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div>
                   <Image
-                    src="/stagimg (1).png" // Update with the path to your image
+                    src="/stagimg (1).jpg" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/stagimg (4).png" // Update with the path to your image
+                    src="/stagimg (4).jpg" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
                 <div className="summarypad">
                   <Image
-                    src="/stagimg (2).png" // Update with the path to your image
+                    src="/stagimg (2).jpg" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/stagimg (3).png" // Update with the path to your image
+                    src="/stagimg (3).jpg" // Update with the path to your image
                     alt="Description"
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -898,37 +905,41 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div className="zoom">
                   <Image
-                    src="/stagimg (1).png" // Update with the path to your image
+                    src="/stagimg (1).jpg" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/stagimg (4).png" // Update with the path to your image
+                    src="/stagimg (4).jpg" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable "
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
                 <div className="summarypad zoom">
                   <Image
-                    src="/stagimg (2).png" // Update with the path to your image
+                    src="/stagimg (2).jpg" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/stagimg (3).png" // Update with the path to your image
+                    src="/stagimg (3).jpg" // Update with the path to your image
                     alt="Description"
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable "
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -971,6 +982,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
@@ -979,6 +991,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -989,6 +1002,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
@@ -997,6 +1011,7 @@ export default function Leftflex() {
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -1060,6 +1075,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
@@ -1068,6 +1084,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable "
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -1078,6 +1095,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
@@ -1086,6 +1104,7 @@ export default function Leftflex() {
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable "
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -1129,6 +1148,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
@@ -1137,6 +1157,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -1147,6 +1168,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
@@ -1155,6 +1177,7 @@ export default function Leftflex() {
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -1231,6 +1254,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
@@ -1239,6 +1263,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable "
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
@@ -1249,6 +1274,7 @@ export default function Leftflex() {
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable"
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
@@ -1257,6 +1283,7 @@ export default function Leftflex() {
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
                     className="summaryimg zoomable "
+                    unoptimized
                     style={{ cursor: "zoom-in" }}
                   />
                 </div>
