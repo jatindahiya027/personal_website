@@ -133,7 +133,7 @@ export default function Leftflex() {
           <>
             <button className="hamburger" onClick={toggleMenu}>
               <Image
-                src="/menus .webp" // Update with the path to your image
+                src="/menus.webp" // Update with the path to your image
                 alt="Menu Icon"
                 width={35} // Specify the width of the image
                 height={35} // Specify the height of the image
