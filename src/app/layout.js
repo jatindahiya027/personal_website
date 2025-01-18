@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="/final3.png" // Replace with your actual image URL
+          content="/final3.webp" // Replace with your actual image URL
         />
         <meta property="og:url" content="https://jatindahiya.com/" /> {/* Replace with your actual website URL */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
         <meta name="twitter:description" content={metadata.description} />
         <meta
           name="twitter:image"
-          content="/final3.png" // Replace with your actual image URL
+          content="/final3.webp" // Replace with your actual image URL
         />
         <link
           rel="stylesheet"

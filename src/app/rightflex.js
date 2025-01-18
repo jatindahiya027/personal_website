@@ -4,7 +4,7 @@ export default function Rightflex(){
     return(
         <div className="shrink-0 w-72 bg-zinc-900 p-5 flex items-center h-screen flex-col rounded-r-lg">
           <Image
-            src="/jatin2.png"
+            src="/jatin2 .webp"
             alt="Vercel Logo"
             className="dark:invert mx-auto rounded-lg bg-black"
             width={200}
@@ -26,7 +26,7 @@ export default function Rightflex(){
               <span className="tooltip">LinkedIn</span>
   
               <Image
-                src="/linkedin.png"
+                src="/linkedin .webp"
                 alt="Vercel Logo"
                 width={18}
                 height={18}
@@ -36,7 +36,7 @@ export default function Rightflex(){
             <li className="icon twitter">
               <span className="tooltip">Twitter</span>
               <Image
-                src="/twitter.png"
+                src="/twitter .webp"
                 alt="Vercel Logo"
                 width={18}
                 height={18}
@@ -48,7 +48,7 @@ export default function Rightflex(){
               <span className="tooltip">Youtube</span>
   
               <Image
-                src="/youtube.png"
+                src="/youtube .webp"
                 alt="Vercel Logo"
                 width={18}
                 height={18}
@@ -60,7 +60,7 @@ export default function Rightflex(){
               <span className="tooltip">Threads</span>
   
               <Image
-                src="/threads.png"
+                src="/threads .webp"
                 alt="Vercel Logo"
                 width={18}
                 height={18}
@@ -71,7 +71,7 @@ export default function Rightflex(){
               <span className="tooltip">Instagram</span>
   
               <Image
-                src="/instagram.png"
+                src="/instagram .webp"
                 alt="Vercel Logo"
                 width={18}
                 height={18}

@@ -133,7 +133,7 @@ export default function Leftflex() {
           <>
             <button className="hamburger" onClick={toggleMenu}>
               <Image
-                src="/menus.png" // Update with the path to your image
+                src="/menus .webp" // Update with the path to your image
                 alt="Menu Icon"
                 width={35} // Specify the width of the image
                 height={35} // Specify the height of the image
@@ -260,7 +260,7 @@ export default function Leftflex() {
         {isMobile || isTab ? (
           <>
             <Image
-              src="/final4.png" // Update with the path to your image
+              src="/final4.webp" // Update with the path to your image
               alt="Description"
               width={700} // Specify the width of the image
               height={300} // Specify the height of the image
@@ -276,7 +276,7 @@ export default function Leftflex() {
             >
               <h4 className="job">
                 <Image
-                  src="/down-right.png" // Update with the path to your image
+                  src="/down-right.webp" // Update with the path to your image
                   alt="Description"
                   width={20} // Specify the width of the image
                   height={20} // Specify the height of the image
@@ -302,7 +302,7 @@ export default function Leftflex() {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
               >
                 <Image
-                  src="/global.png" // Update with the path to your image
+                  src="/global.webp" // Update with the path to your image
                   alt="Description"
                   width={isMobile ? 35 : 60} // Specify the width of the image
                   height={isMobile ? 35 : 60} // Specify the height of the image
@@ -325,7 +325,7 @@ export default function Leftflex() {
         ) : (
           <>
             <Image
-              src="/final3.png" // Update with the path to your image
+              src="/final3.webp" // Update with the path to your image
               alt="Description"
               width={550} // Specify the width of the image
               height={300} // Specify the height of the image
@@ -341,7 +341,7 @@ export default function Leftflex() {
             >
               <h4 className="job">
                 <Image
-                  src="/down-right.png" // Update with the path to your image
+                  src="/down-right.webp" // Update with the path to your image
                   alt="Description"
                   width={20} // Specify the width of the image
                   height={20} // Specify the height of the image
@@ -365,7 +365,7 @@ export default function Leftflex() {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
               >
                 <Image
-                  src="/global.png" // Update with the path to your image
+                  src="/global.webp" // Update with the path to your image
                   alt="Description"
                   width={50} // Specify the width of the image
                   height={50} // Specify the height of the image
@@ -394,7 +394,7 @@ export default function Leftflex() {
           <div className="profilediv">
             <div className="profiledivdiv">
               <Image
-                src="/me2.png" // Update with the path to your image
+                src="/me2.webp" // Update with the path to your image
                 alt="Description"
                 width={244} // Specify the width of the image
                 height={364} // Specify the height of the image
@@ -437,7 +437,7 @@ export default function Leftflex() {
               </p>
             </div>
             <Image
-              src="/Line 1.png" // Update with the path to your image
+              src="/Line 1.webp" // Update with the path to your image
               alt="Description"
               width={1000} // Specify the width of the image
               height={2} // Specify the height of the image
@@ -460,7 +460,7 @@ export default function Leftflex() {
               </motion.p>
             </div>
             <Image
-              src="/Line 1.png" // Update with the path to your image
+              src="/Line 1.webp" // Update with the path to your image
               alt="Description"
               width={1000} // Specify the width of the image
               height={2} // Specify the height of the image
@@ -514,7 +514,7 @@ export default function Leftflex() {
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
               <div className="cont">
                 <Image
-                  src="/java.png"
+                  src="/java.webp"
                   alt="Description"
                   width={200}
                   height={200}
@@ -532,7 +532,7 @@ export default function Leftflex() {
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
               <div className="cont">
                 <Image
-                  src="/js.png"
+                  src="/js.webp"
                   alt="Description"
                   width={200}
                   height={200}
@@ -568,7 +568,7 @@ export default function Leftflex() {
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
               <div className="cont">
                 <Image
-                  src="/css.png"
+                  src="/css.webp"
                   alt="Description"
                   width={200}
                   height={200}
@@ -586,7 +586,7 @@ export default function Leftflex() {
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
               <div className="cont">
                 <Image
-                  src="/react.png"
+                  src="/react.webp"
                   alt="Description"
                   width={200}
                   height={200}
@@ -604,7 +604,7 @@ export default function Leftflex() {
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
               <div className="cont">
                 <Image
-                  src="/next.png"
+                  src="/next.webp"
                   alt="Description"
                   width={200}
                   height={200}
@@ -640,7 +640,7 @@ export default function Leftflex() {
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
               <div className="cont">
                 <Image
-                  src="/python.png"
+                  src="/python.webp"
                   alt="Description"
                   width={200}
                   height={200}
@@ -682,7 +682,7 @@ export default function Leftflex() {
           >
             <p>01</p>
             <Image
-              src="/Stag.png" // Update with the path to your image
+              src="/Stag.webp" // Update with the path to your image
               alt="Description"
               width={100} // Specify the width of the image
               height={364} // Specify the height of the image
@@ -699,7 +699,7 @@ export default function Leftflex() {
           >
             <p>02</p>
             <Image
-              src="/mycart.png" // Update with the path to your image
+              src="/mycart.webp" // Update with the path to your image
               alt="Description"
               width={100} // Specify the width of the image
               height={100} // Specify the height of the image
@@ -716,7 +716,7 @@ export default function Leftflex() {
           >
             <p>03</p>
             <Image
-              src="/moneypot.png" // Update with the path to your image
+              src="/moneypot.webp" // Update with the path to your image
               alt="Description"
               width={100} // Specify the width of the image
               height={364} // Specify the height of the image
@@ -787,7 +787,7 @@ export default function Leftflex() {
         </motion.div>
         <div className="projectheadingdiv2">
           <Image
-            src="/icon.png" // Update with the path to your image
+            src="/icon.webp" // Update with the path to your image
             alt="Description"
             width={400} // Specify the width of the image
             height={400} // Specify the height of the image
@@ -803,7 +803,7 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div>
                   <Image
-                    src="/stagimg (1).jpg" // Update with the path to your image
+                    src="/stagimg (1).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -812,7 +812,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/stagimg (4).jpg" // Update with the path to your image
+                    src="/stagimg (4).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -823,7 +823,7 @@ export default function Leftflex() {
                 </div>
                 <div className="summarypad">
                   <Image
-                    src="/stagimg (2).jpg" // Update with the path to your image
+                    src="/stagimg (2).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -832,7 +832,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/stagimg (3).jpg" // Update with the path to your image
+                    src="/stagimg (3).webp" // Update with the path to your image
                     alt="Description"
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -887,7 +887,7 @@ export default function Leftflex() {
               target="_blank"
               className="setmargin center"
             >
-              <Image alt="github" src="/github.png" width={30} height={30} />
+              <Image alt="github" src="/github.webp" width={30} height={30} />
               Code
             </a>
             <div className="techstack setmargin">
@@ -905,7 +905,7 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div className="zoom">
                   <Image
-                    src="/stagimg (1).jpg" // Update with the path to your image
+                    src="/stagimg (1).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -914,7 +914,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/stagimg (4).jpg" // Update with the path to your image
+                    src="/stagimg (4).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -925,7 +925,7 @@ export default function Leftflex() {
                 </div>
                 <div className="summarypad zoom">
                   <Image
-                    src="/stagimg (2).jpg" // Update with the path to your image
+                    src="/stagimg (2).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -934,7 +934,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/stagimg (3).jpg" // Update with the path to your image
+                    src="/stagimg (3).webp" // Update with the path to your image
                     alt="Description"
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -961,7 +961,7 @@ export default function Leftflex() {
         </motion.div>
         <div className="projectheadingdiv2">
           <Image
-            src="/mycart1.png" // Update with the path to your image
+            src="/mycart1.webp" // Update with the path to your image
             alt="Description"
             width={400} // Specify the width of the image
             height={400} // Specify the height of the image
@@ -977,7 +977,7 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div>
                   <Image
-                    src="/mycart (1).png" // Update with the path to your image
+                    src="/mycart (1).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -986,7 +986,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/mycart (3).png" // Update with the path to your image
+                    src="/mycart (3).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -997,7 +997,7 @@ export default function Leftflex() {
                 </div>
                 <div className="summarypad">
                   <Image
-                    src="/mycart (4).png" // Update with the path to your image
+                    src="/mycart (4).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1006,7 +1006,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/mycart (2).png" // Update with the path to your image
+                    src="/mycart (2).webp" // Update with the path to your image
                     alt="Description"
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1050,7 +1050,7 @@ export default function Leftflex() {
               target="_blank"
               className="setmargin center"
             >
-              <Image alt="github" src="/github.png" width={30} height={30} />
+              <Image alt="github" src="/github.webp" width={30} height={30} />
               Code
             </a>
             <div className="techstack setmargin">
@@ -1070,7 +1070,7 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div className="zoom">
                   <Image
-                    src="/mycart (1).png" // Update with the path to your image
+                    src="/mycart (1).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1079,7 +1079,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/mycart (3).png" // Update with the path to your image
+                    src="/mycart (3).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1090,7 +1090,7 @@ export default function Leftflex() {
                 </div>
                 <div className="summarypad zoom">
                   <Image
-                    src="/mycart (4).png" // Update with the path to your image
+                    src="/mycart (4).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1099,7 +1099,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/mycart (2).png" // Update with the path to your image
+                    src="/mycart (2).webp" // Update with the path to your image
                     alt="Description"
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1126,7 +1126,7 @@ export default function Leftflex() {
         </motion.div>
         <div className="projectheadingdiv2">
           <Image
-            src="/moneypot1.png" // Update with the path to your image
+            src="/moneypot1.webp" // Update with the path to your image
             alt="Description"
             width={400} // Specify the width of the image
             height={400} // Specify the height of the image
@@ -1143,7 +1143,7 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div>
                   <Image
-                    src="/img (1).png" // Update with the path to your image
+                    src="/img (1) .webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1152,7 +1152,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/img (3).png" // Update with the path to your image
+                    src="/img (3).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1163,7 +1163,7 @@ export default function Leftflex() {
                 </div>
                 <div className="summarypad">
                   <Image
-                    src="/img (4).png" // Update with the path to your image
+                    src="/img (4).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1172,7 +1172,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/img (5).png" // Update with the path to your image
+                    src="/img (5).webp" // Update with the path to your image
                     alt="Description"
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1227,7 +1227,7 @@ export default function Leftflex() {
               target="_blank"
               className="setmargin center"
             >
-              <Image alt="github" src="/github.png" width={30} height={30} />
+              <Image alt="github" src="/github.webp" width={30} height={30} />
               Code
             </a>
 
@@ -1249,7 +1249,7 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div className="zoom">
                   <Image
-                    src="/img (1).png" // Update with the path to your image
+                    src="/img (1).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1258,7 +1258,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/img (3).png" // Update with the path to your image
+                    src="/img (3).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1269,7 +1269,7 @@ export default function Leftflex() {
                 </div>
                 <div className="summarypad zoom">
                   <Image
-                    src="/img (4).png" // Update with the path to your image
+                    src="/img (4).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
@@ -1278,7 +1278,7 @@ export default function Leftflex() {
                     style={{ cursor: "zoom-in" }}
                   />
                   <Image
-                    src="/img (5).png" // Update with the path to your image
+                    src="/img (5).webp" // Update with the path to your image
                     alt="Description"
                     width={200} // Specify the width of the image
                     height={364} // Specify the height of the image
