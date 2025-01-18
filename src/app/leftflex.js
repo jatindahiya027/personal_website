@@ -1143,7 +1143,7 @@ export default function Leftflex() {
               <div className="summarydiv summarycenter">
                 <div>
                   <Image
-                    src="/img (1) .webp" // Update with the path to your image
+                    src="/img (1).webp" // Update with the path to your image
                     alt="Description"
                     width={100} // Specify the width of the image
                     height={364} // Specify the height of the image
