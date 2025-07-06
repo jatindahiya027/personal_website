@@ -847,7 +847,7 @@ export default function Leftflex() {
             <></>
           )}
           <div>
-            <p className="profilep light small setmargin">
+            <div className="profilep light small setmargin">
               Stag is a desktop application built with Electron.js to help you
               organize all your reference images in one place. Whether you are a
               designer, artist, or creative professional, Stag streamlines your
@@ -881,7 +881,7 @@ export default function Leftflex() {
                   settings, date taken, and more.
                 </li>
               </ul>
-            </p>
+            </div>
             <a
               href="https://github.com/jatindahiya027/Stag"
               target="_blank"
@@ -1021,14 +1021,14 @@ export default function Leftflex() {
             <></>
           )}
           <div>
-            <p className="profilep light small setmargin">
+            <div className="profilep light small setmargin">
               MyCart is a Next.js application designed to help you keep track of
               pricing data for products across multiple e-commerce platforms. By
               scraping prices from Flipkart, Amazon, Zara, Converse, TataCliq,
               Ajio, Myntra, and Adidas, MyCart enables you to monitor the price
               trends of your favorite items in one place. Get frequent update on
               Mail when the prices are at its lowest.
-              <h2>Features</h2>
+              <h2 >Features</h2>
               <ul>
                 <li>
                   <b>Scrape Prices:</b> Fetch the latest pricing data from
@@ -1044,7 +1044,7 @@ export default function Leftflex() {
                   added.
                 </li>
               </ul>
-            </p>
+            </div>
             <a
               href="https://github.com/jatindahiya027/MyCart"
               target="_blank"
@@ -1187,7 +1187,7 @@ export default function Leftflex() {
             <></>
           )}
           <div>
-            <p className="profilep light small setmargin">
+            <div className="profilep light small setmargin">
               MoneyPot is a sleek and user-friendly personal finance tracker
               built with Next.js. It helps you manage your expenses, track
               transactions, and analyze spending patterns efficiently. MoneyPot
@@ -1220,7 +1220,7 @@ export default function Leftflex() {
                   great user experience.
                 </li>
               </ul>
-            </p>
+            </div>
 
             <a
               href="https://github.com/jatindahiya027/MoneyPot"
