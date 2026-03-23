@@ -4,56 +4,56 @@ import { motion, useAnimation } from 'framer-motion';
 const InfiniteTextRotation = () => {
   const controls = useAnimation();
   const textRef = useRef(null);
-  const cloneRef = useRef(null);
 
   useEffect(() => {
-    const textWidth = textRef.current.offsetWidth;
-    const cloneWidth = cloneRef.current.offsetWidth;
+    if (!textRef.current) return;
+    const width = textRef.current.offsetWidth;
 
-    controls.start({
-      x: ['0%', `-${textWidth}px`],
-      transition: {
-        duration: 10,
-        ease: 'linear',
-        repeat: Infinity,
-        repeatType: 'loop',
-      },
-    });
-
-    window.addEventListener('resize', () => {
-      controls.stop();
+    const start = () => {
       controls.start({
-        x: ['0%', `-${textWidth}px`],
+        x: ['0px', `-${width}px`],
         transition: {
-          duration: 10,
+          duration: 14,
           ease: 'linear',
           repeat: Infinity,
           repeatType: 'loop',
         },
       });
-    });
+    };
 
-    return () => window.removeEventListener('resize', () => {});
+    start();
+
+    const handleResize = () => { controls.stop(); start(); };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [controls]);
 
+  const text = 'JATIN DAHIYA — ';
+
   return (
-    <div className='movediv' style={{ overflow: 'hidden', whiteSpace: 'nowrap', width: '100%', position: 'relative' }}>
-      <motion.div
-        style={{ display: 'inline-block' }}
-        animate={controls}
-      >
-        <span className='move' ref={textRef} style={{ display: 'inline-block' }}>
-          JATIN DAHIYA -
-        </span>
-        <span className='move' ref={cloneRef} style={{ display: 'inline-block' }}>
-        JATIN DAHIYA -
-        </span>
-        <span className='move' ref={cloneRef} style={{ display: 'inline-block' }}>
-        JATIN DAHIYA -
-        </span>
-        <span className='move' ref={cloneRef} style={{ display: 'inline-block' }}>
-        JATIN DAHIYA -
-        </span>
+    <div
+      className="movediv"
+      style={{
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        width: '100%',
+        position: 'absolute',
+        bottom: '80px',
+        left: 0,
+        zIndex: 2,
+      }}
+    >
+      <motion.div style={{ display: 'inline-block' }} animate={controls}>
+        {[...Array(6)].map((_, i) => (
+          <span
+            key={i}
+            className="move"
+            ref={i === 0 ? textRef : undefined}
+            style={{ display: 'inline-block' }}
+          >
+            {text}
+          </span>
+        ))}
       </motion.div>
     </div>
   );
