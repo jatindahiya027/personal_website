@@ -2,12 +2,6 @@
 import { useState, useEffect } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
-/**
- * Custom cursor — rendered only on pointer-fine (non-touch) devices.
- * Sharp dot tracks exactly; lagging ring follows with spring physics.
- * Ring enlarges + tints when hovering interactive elements.
- * Dot shrinks + pulses on click.
- */
 export default function CustomCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -17,9 +11,18 @@ export default function CustomCursor() {
   const [clicked,  setClicked]  = useState(false);
   const [hovering, setHovering] = useState(false);
   const [hidden,   setHidden]   = useState(true);
+  const [isTouch,  setIsTouch]  = useState(true); // assume touch until we know otherwise
 
   useEffect(() => {
-    const INTERACTIVE = "a,button,[class*='navbar-button'],[class*='proj-card'],[class*='cont'],[class*='github-link'],[class*='techstack'] p";
+    // Detect pointer type — only activate on fine (mouse) devices
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    setIsTouch(!fine);
+    if (!fine) return;
+
+    // Add class to body so CSS can hide the native cursor globally on this page only
+    document.body.classList.add("custom-cursor-active");
+
+    const INTERACTIVE = "a,button,[class*='navbar-button'],[class*='proj-card'],[class*='cont'],[class*='github-link'],[class*='techstack'] p,[class*='blog-card'],[class*='bpost-back']";
 
     const onMove  = (e) => { cursorX.set(e.clientX); cursorY.set(e.clientY); setHidden(false); };
     const onDown  = ()  => setClicked(true);
@@ -36,6 +39,7 @@ export default function CustomCursor() {
     window.addEventListener("mouseover",  onOver,  { passive: true });
 
     return () => {
+      document.body.classList.remove("custom-cursor-active");
       window.removeEventListener("mousemove",  onMove);
       window.removeEventListener("mousedown",  onDown);
       window.removeEventListener("mouseup",    onUp);
@@ -45,8 +49,8 @@ export default function CustomCursor() {
     };
   }, [cursorX, cursorY]);
 
-  // Don't render on touch devices
-  if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return null;
+  // Don't render anything on touch devices
+  if (isTouch) return null;
 
   const base = { position: "fixed", top: 0, left: 0, pointerEvents: "none" };
 

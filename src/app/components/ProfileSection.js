@@ -1,21 +1,26 @@
 "use client";
 import { FadeUp, FadeRight } from "./animations";
+import ParallaxEl from "./ParallaxEl";
 import { TypeOnce } from "./TypeWriter";
 import { PERSONAL, EDUCATION, LANGUAGES, EXPERIENCE } from "../data/portfolio";
 
 export default function ProfileSection({ sectionRef }) {
   return (
     <div ref={sectionRef} className="aboutme">
-      <FadeUp>
-        <div className="section-label">About</div>
-        <h1 className="h1heading"><TypeOnce text="Profile" speed={80} /></h1>
-      </FadeUp>
+      <ParallaxEl speed={0.08}>
+        <FadeUp>
+          <div className="section-label">About</div>
+          <h1 className="h1heading"><TypeOnce text="Profile" speed={80} /></h1>
+        </FadeUp>
+      </ParallaxEl>
 
       <div className="profile">
         {/* Photo + name + bio */}
         <FadeUp delay={0.08} className="profilediv">
           <div style={{ width: "100%" }}>
-            <img src={PERSONAL.photo} alt={PERSONAL.name} className="meimage" />
+            <ParallaxEl speed={0.18}>
+              <img src={PERSONAL.photo} alt={PERSONAL.name} className="meimage" />
+            </ParallaxEl>
             <p className="profilep2">{PERSONAL.name}</p>
             <FadeRight delay={0.18}>
               <p className="profilep">{PERSONAL.bio}</p>

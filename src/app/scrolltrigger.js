@@ -40,7 +40,7 @@ const InfiniteTextRotation = () => {
         position: 'absolute',
         bottom: '80px',
         left: 0,
-        zIndex: 2,
+        zIndex: 5,
       }}
     >
       <motion.div style={{ display: 'inline-block' }} animate={controls}>

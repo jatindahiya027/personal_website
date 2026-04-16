@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { NAV_ITEMS, PERSONAL } from "../data/portfolio";
 
 function ResumeBtn() {
@@ -23,10 +24,11 @@ function ResumeBtn() {
   );
 }
 
-export default function Navbar({ isMobile, scrollTo }) {
+export default function Navbar({ isMobile, scrollTo, activeSection }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
+    <div className="navbar-outer">
     <nav className="navbar">
       <div className="nav-logo">{PERSONAL.name}</div>
 
@@ -36,14 +38,29 @@ export default function Navbar({ isMobile, scrollTo }) {
           {NAV_ITEMS.map((item, i) => (
             <motion.div key={item.key}
               initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.07, duration: 0.35 }}>
+              transition={{ delay: i * 0.07, duration: 0.35 }}
+              style={{ position: "relative" }}>
               <div className="navbar-button" onClick={() => scrollTo(item.key)}>
                 {item.label}
+                {activeSection === item.key && (
+                  <motion.span
+                    layoutId="nav-indicator"
+                    className="nav-indicator"
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                )}
               </div>
             </motion.div>
           ))}
+          {/* Blog — opens /blog page */}
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: NAV_ITEMS.length * 0.07, duration: 0.35 }}>
+            <Link href="/blog" className="navbar-button" style={{ textDecoration: "none" }}>
+              Blog
+            </Link>
+          </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.35 }}>
+            transition={{ delay: 0.35, duration: 0.35 }}>
             <ResumeBtn />
           </motion.div>
         </div>
@@ -76,11 +93,17 @@ export default function Navbar({ isMobile, scrollTo }) {
                     {item.label}
                   </div>
                 ))}
+                <Link href="/blog" className="menu-item"
+                  style={{ display: "block", textDecoration: "none" }}
+                  onClick={() => setMenuOpen(false)}>
+                  Blog
+                </Link>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       )}
     </nav>
+    </div>
   );
 }

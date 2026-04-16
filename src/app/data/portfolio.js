@@ -13,7 +13,7 @@ export const PERSONAL = {
   email:       "jatindahiya027@gmail.com",
   location:    "Hyderabad",
   tagline:     "Software",                  // shown above the typing cycle
-  bio:         "A results-oriented software developer always eager to learn and grow.",
+  bio:         "Full-stack developer at TCS by day. Building price trackers, finance dashboards, and Electron apps at night.",
   heroImageDesktop: "/final3.webp",
   heroImageMobile:  "/final4.webp",
   photo:            "/me2.webp",
@@ -22,10 +22,10 @@ export const PERSONAL = {
 
 // ── Hero typing cycle — roles that cycle in the hero ────
 export const HERO_ROLES = [
-  "Designer & Developer",
-  "Problem Solver",
-  "Creative Thinker",
-  "Full-Stack Engineer",
+  "Full-Stack Developer",
+  "Systems Engineer",
+  "ML Practitioner",
+  "Game Dev Enthusiast",
 ];
 
 // ── Navigation links ─────────────────────────────────────

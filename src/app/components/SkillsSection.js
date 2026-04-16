@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { FadeUp } from "./animations";
 import { TypeOnce } from "./TypeWriter";
 import { SKILLS } from "../data/portfolio";
+import ParallaxEl from "./ParallaxEl";
 
 function SkillCard({ src, label, delay = 0, size = 54 }) {
   const wrapRef  = useRef(null);
@@ -45,16 +46,20 @@ function SkillCard({ src, label, delay = 0, size = 54 }) {
 export default function SkillsSection({ sectionRef, isMobile }) {
   return (
     <div ref={sectionRef} className="Skills">
-      <FadeUp>
-        <div className="section-label">Expertise</div>
-        <h1 className="h1heading"><TypeOnce text="Skills" speed={80} /></h1>
-      </FadeUp>
-      <div className="skillsimg">
-        {SKILLS.map((s, i) => (
-          <SkillCard key={s.label} src={s.src} label={s.label}
-            delay={i * 0.045} size={isMobile ? 30 : 52} />
-        ))}
-      </div>
+      <ParallaxEl speed={0.08}>
+        <FadeUp>
+          <div className="section-label">Expertise</div>
+          <h1 className="h1heading"><TypeOnce text="Skills" speed={80} /></h1>
+        </FadeUp>
+      </ParallaxEl>
+      <ParallaxEl speed={0.05}>
+        <div className="skillsimg">
+          {SKILLS.map((s, i) => (
+            <SkillCard key={s.label} src={s.src} label={s.label}
+              delay={i * 0.045} size={isMobile ? 30 : 52} />
+          ))}
+        </div>
+      </ParallaxEl>
     </div>
   );
 }
