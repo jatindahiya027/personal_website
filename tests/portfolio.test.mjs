@@ -27,7 +27,35 @@ const greetingSource = await readFile(
   new URL("../src/app/components/FirstVisitGreeting.js", import.meta.url),
   "utf8",
 );
-const { PROJECTS, getProjectImages, getNextProject } = await import(
+const globalStyles = await readFile(
+  new URL("../src/app/globals.css", import.meta.url),
+  "utf8",
+);
+const packageSource = JSON.parse(
+  await readFile(new URL("../package.json", import.meta.url), "utf8"),
+);
+const workflowSource = await readFile(
+  new URL("../.github/workflows/nextjs.yml", import.meta.url),
+  "utf8",
+);
+const artboardSource = await readFile(
+  new URL("../src/app/components/ProjectArtboard.js", import.meta.url),
+  "utf8",
+);
+const carouselSource = await readFile(
+  new URL("../src/app/components/HeroCarousel.js", import.meta.url),
+  "utf8",
+);
+const generatorSource = await readFile(
+  new URL("../scripts/generate-responsive-images.mjs", import.meta.url),
+  "utf8",
+);
+const {
+  RESPONSIVE_IMAGE_WIDTHS,
+  getResponsiveImageProps,
+  getResponsiveVariantPath,
+} = await import("../src/app/utils/responsive-images.mjs");
+const { PROJECTS, GREETINGS, getProjectImages, getNextProject } = await import(
   `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`
 );
 
@@ -91,7 +119,35 @@ test("the greeting is selected before paint and never opened after hydration", (
   assert.match(layoutSource, /<FirstVisitGreeting/);
   assert.doesNotMatch(layoutSource, /portfolio-welcomed-v2/);
   assert.doesNotMatch(greetingSource, /showModal|clipPath/);
-  assert.match(greetingSource, /setTimeout\(leave, 1750\)/);
+  assert.match(greetingSource, /setTimeout\(leave, 5000\)/);
+});
+
+test("the first-visit greeting cycles through modular LTR languages", () => {
+  assert.deepEqual(
+    GREETINGS.map((item) => item.code),
+    ["en", "es", "hi-Latn", "ja-Latn"],
+  );
+  assert.equal(new Set(GREETINGS.map((item) => item.text)).size, GREETINGS.length);
+  GREETINGS.forEach((item) => {
+    assert.ok(item.language);
+    assert.doesNotMatch(item.text, /[\u0590-\u08ff]/);
+  });
+  assert.match(greetingSource, /GREETINGS\.map/);
+  assert.match(globalStyles, /@keyframes greeting-language-cycle/);
+  assert.match(globalStyles, /greeting-language-cycle 1600ms/);
+  assert.match(globalStyles, /var\(--greeting-index\) \* 1200ms/);
+  assert.match(
+    globalStyles,
+    /translate3d\(0, 0\.18em, 0\) scale\(0\.985\)/,
+  );
+});
+
+test("the primary typeface is bundled, preloaded and never fetched remotely", () => {
+  assert.match(layoutSource, /from "next\/font\/local"/);
+  assert.match(layoutSource, /display:\s*"block"/);
+  assert.match(layoutSource, /className=\{manrope\.className\}/);
+  assert.doesNotMatch(globalStyles, /font-display:\s*swap/);
+  assert.doesNotMatch(globalStyles, /fonts\.(?:googleapis|gstatic)\.com/);
 });
 
 test("header and hero use the requested labels and expose no motion control", () => {
@@ -109,4 +165,39 @@ test("project reveals avoid mobile masks and clipped-observer feedback loops", (
     /const measured = compact\s*\? \[\]\s*: targets\.map/,
   );
   assert.doesNotMatch(choreographySource, /\[\.\.\.visible\]/);
+});
+
+test("project images receive deterministic responsive sources", () => {
+  const props = getResponsiveImageProps("/stagimg (1).webp", {
+    sizes: "92vw",
+  });
+  assert.equal(props.sizes, "92vw");
+  assert.equal(
+    props.srcSet.split(", ").length,
+    RESPONSIVE_IMAGE_WIDTHS.length,
+  );
+  assert.doesNotMatch(props.srcSet, /stagimg \(1\)/);
+  assert.match(getResponsiveVariantPath("/stagimg (1).webp", 1280), /1280\.webp$/);
+  assert.match(carouselSource, /getResponsiveImageProps/);
+  assert.match(artboardSource, /getResponsiveImageProps/);
+});
+
+test("the full-image viewer keeps the untouched original", () => {
+  assert.match(artboardSource, /responsive:\s*false/);
+  assert.match(artboardSource, /withBasePath\(item\.src\)/);
+  assert.match(artboardSource, /fetchPriority:\s*"high"/);
+});
+
+test("GitHub Pages generates high-quality variants before the static build", () => {
+  assert.equal(
+    packageSource.scripts.prebuild,
+    "node scripts/generate-responsive-images.mjs",
+  );
+  assert.match(workflowSource, /id:\s*pages/);
+  assert.match(workflowSource, /run:\s*npm run build/);
+  assert.match(workflowSource, /NEXT_PUBLIC_BASE_PATH/);
+  assert.match(generatorSource, /quality:\s*100/);
+  assert.match(generatorSource, /alphaQuality:\s*100/);
+  assert.match(generatorSource, /smartSubsample:\s*true/);
+  assert.match(generatorSource, /withoutEnlargement:\s*true/);
 });

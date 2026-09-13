@@ -3,6 +3,12 @@ import { useEffect, useId, useRef, useState } from "react";
 import { getProjectImages } from "../data/portfolio";
 import { useMotionPreference } from "./MotionProvider";
 import Icon from "./Icons";
+import {
+  getResponsiveImageProps,
+  withBasePath,
+} from "../utils/responsive-images.mjs";
+
+const ARTBOARD_IMAGE_SIZES = "(max-width: 760px) 92vw, 832px";
 
 /** One artboard for every project. Images may be URLs or { src, alt, caption } objects. */
 export default function ProjectArtboard({
@@ -72,18 +78,26 @@ export default function ProjectArtboard({
     }
   }
   function renderImage(item, extra = {}) {
+    const {
+      responsive = true,
+      sizes = ARTBOARD_IMAGE_SIZES,
+      ...imageProps
+    } = extra;
+    const sourceProps = responsive
+      ? getResponsiveImageProps(item.src, { sizes })
+      : { src: withBasePath(item.src) };
     return failed[item.src] ? (
       <div className="image-unavailable">
         Image unavailable<span>{item.alt}</span>
       </div>
     ) : (
       <img
-        src={item.src}
+        {...sourceProps}
         alt={item.alt}
         onError={() =>
           setFailed((current) => ({ ...current, [item.src]: true }))
         }
-        {...extra}
+        {...imageProps}
       />
     );
   }
@@ -145,6 +159,7 @@ export default function ProjectArtboard({
                 loading: "lazy",
                 decoding: "async",
                 alt: "",
+                sizes: "66px",
               })}
             </button>
           ))}
@@ -194,7 +209,11 @@ export default function ProjectArtboard({
                   }}
                   aria-label={`Enlarge ${item.alt}`}
                 >
-                  {renderImage(item, { loading: "lazy", decoding: "async" })}
+                  {renderImage(item, {
+                    loading: "lazy",
+                    decoding: "async",
+                    sizes: "(max-width: 760px) calc(100vw - 64px), 50vw",
+                  })}
                 </button>
                 <figcaption>
                   {item.caption || `${project.name} · Screen ${index + 1}`}
@@ -230,7 +249,12 @@ export default function ProjectArtboard({
           </button>
         </div>
         <div className="image-dialog-stage">
-          {lightboxOpen && renderImage(image)}
+          {lightboxOpen &&
+            renderImage(image, {
+              responsive: false,
+              decoding: "async",
+              fetchPriority: "high",
+            })}
         </div>
         <div className="image-dialog-controls">
           <button

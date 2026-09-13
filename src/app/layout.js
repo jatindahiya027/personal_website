@@ -1,7 +1,32 @@
 import "./globals.css";
+import localFont from "next/font/local";
 import MotionProvider from "./components/MotionProvider";
 import FirstVisitGreeting from "./components/FirstVisitGreeting";
 import { PERSONAL, EXPERIENCE, SOCIALS, EDUCATION } from "./data/portfolio";
+
+const manrope = localFont({
+  src: [
+    {
+      path: "../../public/fonts/manrope-regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/manrope-semibold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/manrope-bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "block",
+  fallback: ["Arial"],
+  adjustFontFallback: "Arial",
+  preload: true,
+});
 
 export const metadata = {
   metadataBase: new URL(PERSONAL.website),
@@ -56,7 +81,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
-      <body>
+      <body className={manrope.className}>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

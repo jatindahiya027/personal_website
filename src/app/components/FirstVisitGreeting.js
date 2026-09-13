@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { PERSONAL, COPY } from "../data/portfolio";
+import { PERSONAL, COPY, GREETINGS } from "../data/portfolio";
 import Icon from "./Icons";
 
 /**
@@ -50,7 +50,7 @@ export default function FirstVisitGreeting() {
     };
 
     exit.current = leave;
-    const autoTimer = window.setTimeout(leave, 1750);
+    const autoTimer = window.setTimeout(leave, 5000);
     const onKeyDown = (event) => {
       if (event.key === "Escape") leave(true);
     };
@@ -75,7 +75,20 @@ export default function FirstVisitGreeting() {
     >
       <span className="greeting-name">{PERSONAL.name}</span>
       <div className="greeting-message">
-        <span className="greeting-line">{COPY.greeting}</span>
+        <span className="greeting-line greeting-language-stack">
+          <span className="sr-only">{COPY.greeting}</span>
+          {GREETINGS.map((greeting, index) => (
+            <span
+              key={greeting.code}
+              className="greeting-language"
+              lang={greeting.code}
+              aria-hidden="true"
+              style={{ "--greeting-index": index }}
+            >
+              {greeting.text}
+            </span>
+          ))}
+        </span>
         <span className="greeting-line">
           I’m {PERSONAL.name.split(" ")[0]}.
         </span>

@@ -1,21 +1,3 @@
-@font-face {
-  font-family: Manrope;
-  src: url("/fonts/manrope-regular.ttf") format("truetype");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: Manrope;
-  src: url("/fonts/manrope-semibold.ttf") format("truetype");
-  font-weight: 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: Manrope;
-  src: url("/fonts/manrope-bold.ttf") format("truetype");
-  font-weight: 700;
-  font-display: swap;
-}
 :root {
   --ink: #171717;
   --muted: #686868;
@@ -40,7 +22,6 @@ html {
 }
 body {
   margin: 0;
-  font-family: Manrope, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.65;
   background: #fafafa;
@@ -1246,6 +1227,21 @@ html[data-intro="pending"] .greeting {
   font-weight: 600;
   animation: greeting-line-enter 540ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
+.greeting-language-stack {
+  display: grid;
+  font-size: clamp(54px, 8vw, 108px);
+  white-space: nowrap;
+  animation: none;
+}
+.greeting-language {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translate3d(0, 0.18em, 0) scale(0.985);
+  backface-visibility: hidden;
+  animation: greeting-language-cycle 1600ms
+    cubic-bezier(0.77, 0, 0.175, 1) both;
+  animation-delay: calc(var(--greeting-index) * 1200ms);
+}
 .greeting-line:nth-child(2) {
   color: #999;
   animation-delay: 100ms;
@@ -1263,6 +1259,17 @@ html[data-intro="pending"] .greeting {
   from {
     opacity: 0;
     transform: translate3d(0, 24px, 0);
+  }
+}
+@keyframes greeting-language-cycle {
+  25%,
+  75% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -0.18em, 0) scale(0.985);
   }
 }
 @keyframes greeting-detail-enter {
@@ -2245,6 +2252,13 @@ html[data-motion="quiet"] ::view-transition-new(root),
 html[data-motion="quiet"] ::view-transition-old(root) {
   animation: none;
 }
+html[data-motion="quiet"] .greeting-language {
+  opacity: 0;
+  transform: none;
+}
+html[data-motion="quiet"] .greeting-language:nth-child(2) {
+  opacity: 1;
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2258,5 +2272,12 @@ html[data-motion="quiet"] ::view-transition-old(root) {
   ::view-transition-new(root),
   ::view-transition-old(root) {
     animation: none;
+  }
+  .greeting-language {
+    opacity: 0;
+    transform: none;
+  }
+  .greeting-language:nth-child(2) {
+    opacity: 1;
   }
 }

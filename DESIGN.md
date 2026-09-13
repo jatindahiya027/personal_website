@@ -16,7 +16,7 @@ The rounded header is 60px tall on desktop and 56px on phones. It includes résu
 
 ## Motion and timing
 
-- Greeting: 4600ms of visible-tab time for entrance and reading, followed by a 1400ms curtain. Hero text begins after the greeting closes. Enter/Escape can skip it; reduced-motion and paused sessions bypass it.
+- Greeting: 5000ms of visible-tab time cycles through four readable greetings, followed by a 660ms curtain. Each greeting enters for 400ms, rests at full opacity for 800ms, and crossfades into the next over 400ms. Hero text begins after the greeting closes. Enter/Escape can skip it; reduced-motion and paused sessions bypass it.
 - Hero headline: 1800ms line masks, 260ms apart. Supporting copy uses slow word fades and small vertical movement.
 - Text throughout the page: 1600ms heading masks, 1100ms fades/slides, and word reveals lasting up to 2500ms. Word reveals trigger when at least 45% of the text group is visible, with an 8% bottom inset. Whole body paragraphs remain accessible as one reading group. Text does not use a looping typing cursor.
 - Hero carousel: all project screenshots participate. Each advances after 6000ms; the circular card movement takes 1600ms. The center card is sharp and its neighbors are lightly blurred. Manual controls, a local pause button, hover/focus pause, hidden-tab pause, and offscreen pause are included.

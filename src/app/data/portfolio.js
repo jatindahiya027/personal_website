@@ -53,6 +53,16 @@ export const COPY = {
   contactHeading: "Let’s make it happen.",
 };
 
+// ── First-visit greeting sequence ───────────────────────
+// Keep these in left-to-right scripts so the intro remains visually stable.
+// The complete sequence fits inside the existing greeting hold time.
+export const GREETINGS = [
+  { language: "English", code: "en", text: "Hello." },
+  { language: "Spanish", code: "es", text: "Hola." },
+  { language: "Hindi", code: "hi-Latn", text: "Namaste." },
+  { language: "Japanese", code: "ja-Latn", text: "Konnichiwa." },
+];
+
 // ── Profile — education rows ─────────────────────────────
 export const EDUCATION = [
   {

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/generate-responsive-images.mjs",
     "build": "next build",
     "start": "node scripts/serve.mjs",
     "lint": "next lint",

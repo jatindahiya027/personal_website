@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { PROJECTS, getProjectImages } from "../data/portfolio";
 import { useMotionPreference } from "./MotionProvider";
 import Icon from "./Icons";
+import { getResponsiveImageProps } from "../utils/responsive-images.mjs";
 
 const slides = PROJECTS.flatMap((project) =>
   getProjectImages(project).map((image) => ({
@@ -98,7 +99,9 @@ export default function HeroCarousel() {
               aria-hidden={offset !== 0}
             >
               <img
-                src={slide.src}
+                {...getResponsiveImageProps(slide.src, {
+                  sizes: "(max-width: 760px) 72vw, 548px",
+                })}
                 alt={slide.alt}
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
