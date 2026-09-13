@@ -71,7 +71,7 @@ export default function PortfolioHome() {
                     Explore projects <Icon name="arrow-down" size={17} />
                   </a>
                   <a className="text-link" href="#about">
-                    Meet {PERSONAL.name.split(" ")[0]}{" "}
+                    Meet me{" "}
                     <Icon name="arrow-right" size={17} />
                   </a>
                 </div>
@@ -153,7 +153,7 @@ export default function PortfolioHome() {
                     delay={250}
                   />
                   <a href={PERSONAL.resume} className="text-link" download>
-                    Download résumé <Icon name="arrow-down" size={18} />
+                    Download resume <Icon name="arrow-down" size={18} />
                   </a>
                   <div className="about-details">
                     <span>{PERSONAL.location}, India</span>

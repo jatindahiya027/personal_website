@@ -44,6 +44,29 @@ const server = http.createServer((request, response) => {
     response.writeHead(400).end("Bad request");
   }
 });
-server.listen(Number(process.env.PORT || 3000), "127.0.0.1", () =>
-  console.log(`Portfolio preview: http://127.0.0.1:${server.address().port}`),
-);
+
+const startPort = Number.parseInt(process.env.PORT || "3000", 10);
+if (!Number.isInteger(startPort) || startPort < 1 || startPort > 65535)
+  throw new Error(`Invalid PORT: ${process.env.PORT}`);
+
+function listen(port) {
+  const onError = (error) => {
+    server.off("listening", onListening);
+    if (error.code === "EADDRINUSE" && port < 65535) {
+      console.warn(`Port ${port} is in use; trying ${port + 1}…`);
+      listen(port + 1);
+      return;
+    }
+    throw error;
+  };
+  const onListening = () => {
+    server.off("error", onError);
+    console.log(`Portfolio preview: http://127.0.0.1:${server.address().port}`);
+  };
+
+  server.once("error", onError);
+  server.once("listening", onListening);
+  server.listen(port, "127.0.0.1");
+}
+
+listen(startPort);

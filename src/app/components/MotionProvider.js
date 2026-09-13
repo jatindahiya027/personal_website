@@ -7,15 +7,12 @@ import { usePathname, useRouter } from "next/navigation";
 const MotionContext = createContext({
   paused: false,
   reduced: false,
-  toggle: () => {},
   navigate: () => {},
 });
 export const useMotionPreference = () => useContext(MotionContext);
 
 export default function MotionProvider({ children }) {
-  const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(false);
-  const [introDone, setIntroDone] = useState(false);
   const [activeSection, setActiveSection] = useState("top");
   const pathname = usePathname();
   const router = useRouter();
@@ -26,16 +23,12 @@ export default function MotionProvider({ children }) {
     const sync = () => setReduced(query.matches);
     sync();
     query.addEventListener("change", sync);
-    try {
-      setPaused(localStorage.getItem("portfolio-motion") === "paused");
-    } catch {}
     return () => query.removeEventListener("change", sync);
   }, []);
 
   useEffect(() => {
-    document.documentElement.dataset.motion =
-      paused || reduced ? "quiet" : "full";
-  }, [paused, reduced]);
+    document.documentElement.dataset.motion = reduced ? "quiet" : "full";
+  }, [reduced]);
 
   useEffect(() => {
     completion.current?.();
@@ -43,7 +36,7 @@ export default function MotionProvider({ children }) {
   }, [pathname]);
 
   useEffect(() => {
-    if (!introDone || !location.hash) return;
+    if (!location.hash) return;
     // Sticky chapters establish their height during mount. Resolve deep links
     // after that layout settles so the destination clears the floating header.
     let frame = requestAnimationFrame(() => {
@@ -56,22 +49,12 @@ export default function MotionProvider({ children }) {
       });
     });
     return () => cancelAnimationFrame(frame);
-  }, [pathname, introDone]);
-
-  function toggle() {
-    setPaused((value) => {
-      try {
-        localStorage.setItem("portfolio-motion", value ? "full" : "paused");
-      } catch {}
-      return !value;
-    });
-  }
+  }, [pathname]);
 
   function navigate(href) {
     if (
       !document.startViewTransition ||
       reduced ||
-      paused ||
       completion.current
     ) {
       router.push(href);
@@ -94,12 +77,10 @@ export default function MotionProvider({ children }) {
   return (
     <MotionContext.Provider
       value={{
-        paused,
+        paused: false,
         reduced,
-        toggle,
         navigate,
-        introDone,
-        setIntroDone,
+        introDone: true,
         activeSection,
         setActiveSection,
       }}

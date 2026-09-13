@@ -6,7 +6,7 @@ import Icon from "./Icons";
 import { WordReveal, TextReveal } from "./Reveal";
 
 export function Header({ home = false }) {
-  const { paused, reduced, toggle, activeSection } = useMotionPreference();
+  const { activeSection } = useMotionPreference();
   const menu = useRef(null);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -64,24 +64,8 @@ export function Header({ home = false }) {
           {links}
         </nav>
         <a className="header-resume" href={PERSONAL.resume} download>
-          Résumé <Icon name="arrow-down" size={14} />
+          Resume <Icon name="arrow-down" size={14} />
         </a>
-        <button
-          className="icon-button motion-toggle"
-          onClick={toggle}
-          aria-label={paused ? "Resume animations" : "Pause animations"}
-          aria-pressed={paused}
-          disabled={reduced}
-          title={
-            reduced
-              ? "Reduced motion enabled in your system"
-              : paused
-                ? "Resume animations"
-                : "Pause animations"
-          }
-        >
-          <Icon name={paused || reduced ? "play" : "pause"} size={16} />
-        </button>
         <button
           className="icon-button menu-toggle"
           aria-label="Open navigation"

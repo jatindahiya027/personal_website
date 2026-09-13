@@ -1,124 +1,77 @@
 "use client";
+
 import { useEffect, useRef } from "react";
 import { PERSONAL, COPY } from "../data/portfolio";
-import { useMotionPreference } from "./MotionProvider";
 import Icon from "./Icons";
 
+/**
+ * The matching data-intro attribute is set by an inline head script before the
+ * first paint. That lets this server-rendered curtain start above the hero
+ * instead of appearing late after hydration.
+ */
 export default function FirstVisitGreeting() {
-  const dialog = useRef(null);
-  const dismiss = useRef(() => {});
-  const { setIntroDone } = useMotionPreference();
+  const curtain = useRef(null);
+  const enter = useRef(null);
+  const exit = useRef(() => {});
+
   useEffect(() => {
     const root = document.documentElement;
-    const element = dialog.current;
-    if (root.dataset.intro !== "pending") {
-      setIntroDone(true);
-      return;
-    }
-    let disposed = false,
-      exiting = false,
-      frame = 0,
-      elapsed = 0,
-      last = 0;
-    let animation;
-    const animations = [];
+    const element = curtain.current;
+    if (root.dataset.intro !== "pending") return;
+
+    const page = document.getElementById("top");
     const previousOverflow = document.body.style.overflow;
+    let finishTimer = 0;
+    let exiting = false;
+
     document.body.style.overflow = "hidden";
-    element.showModal();
-    element.dataset.phase = "reading";
+    page?.setAttribute("inert", "");
+    enter.current?.focus({ preventScroll: true });
+
     const finish = () => {
-      if (disposed) return;
-      element.close();
       root.dataset.intro = "done";
       document.body.style.overflow = previousOverflow;
+      page?.removeAttribute("inert");
       try {
-        sessionStorage.setItem("portfolio-welcomed-v2", "yes");
+        sessionStorage.setItem("portfolio-welcomed-v3", "yes");
       } catch {}
-      // Start the hero only once the welcome has completely left the screen.
-      setIntroDone(true);
     };
-    const exit = (instant = false) => {
+
+    const leave = (instant = false) => {
       if (exiting) return;
       exiting = true;
-      cancelAnimationFrame(frame);
+      clearTimeout(autoTimer);
       if (instant || matchMedia("(prefers-reduced-motion: reduce)").matches) {
         finish();
         return;
       }
       element.dataset.phase = "leaving";
-      animation = element.animate(
-        [{ clipPath: "inset(0 0 0% 0)" }, { clipPath: "inset(0 0 100% 0)" }],
-        {
-          duration: 1400,
-          easing: "cubic-bezier(0.77, 0, 0.175, 1)",
-          fill: "forwards",
-        },
-      );
-      animation.finished.then(finish).catch(() => {});
+      finishTimer = window.setTimeout(finish, 680);
     };
-    dismiss.current = exit;
-    const tick = (now) => {
-      frame = 0;
-      if (disposed || exiting || document.hidden) {
-        last = 0;
-        return;
-      }
-      if (last) elapsed += Math.min(now - last, 100);
-      last = now;
-      if (elapsed >= 4600) {
-        exit();
-        return;
-      }
-      frame = requestAnimationFrame(tick);
+
+    exit.current = leave;
+    const autoTimer = window.setTimeout(leave, 1750);
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") leave(true);
     };
-    const visibility = () => {
-      last = 0;
-      if (document.hidden) {
-        cancelAnimationFrame(frame);
-        frame = 0;
-      } else if (!exiting && !disposed && !frame)
-        frame = requestAnimationFrame(tick);
-    };
-    document.addEventListener("visibilitychange", visibility);
-    Promise.resolve(document.fonts?.ready).then(() => {
-      if (disposed || exiting) return;
-      element.querySelectorAll(".greeting-line").forEach((line, index) =>
-        animations.push(
-          line.animate(
-            [
-              { opacity: 0.2, clipPath: "inset(100% 0 0 0)" },
-              { opacity: 1, clipPath: "inset(0% 0 0 0)" },
-            ],
-            {
-              duration: 1400,
-              delay: index * 180,
-              easing: "cubic-bezier(0.77, 0, 0.175, 1)",
-              fill: "backwards",
-            },
-          ),
-        ),
-      );
-      visibility();
-    });
+    addEventListener("keydown", onKeyDown);
+
     return () => {
-      disposed = true;
-      cancelAnimationFrame(frame);
-      animation?.cancel();
-      animations.forEach((item) => item.cancel());
-      document.removeEventListener("visibilitychange", visibility);
-      element.close();
+      clearTimeout(autoTimer);
+      clearTimeout(finishTimer);
+      removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      page?.removeAttribute("inert");
     };
-  }, [setIntroDone]);
+  }, []);
+
   return (
-    <dialog
-      ref={dialog}
+    <section
+      ref={curtain}
       className="greeting"
+      role="dialog"
+      aria-modal="true"
       aria-label={`Welcome to ${PERSONAL.name}’s portfolio`}
-      onCancel={(event) => {
-        event.preventDefault();
-        dismiss.current(true);
-      }}
     >
       <span className="greeting-name">{PERSONAL.name}</span>
       <div className="greeting-message">
@@ -129,12 +82,12 @@ export default function FirstVisitGreeting() {
         <p>{COPY.greetingNote}</p>
       </div>
       <button
+        ref={enter}
         className="button button-light greeting-enter"
-        onClick={(event) => dismiss.current(event.detail === 0)}
-        autoFocus
+        onClick={(event) => exit.current(event.detail === 0)}
       >
         Enter portfolio <Icon name="arrow-right" size={18} />
       </button>
-    </dialog>
+    </section>
   );
 }

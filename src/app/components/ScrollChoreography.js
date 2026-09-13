@@ -17,25 +17,41 @@ export default function ScrollChoreography({ sectionItems = SECTIONS }) {
     const sections = [
       ...document.querySelectorAll("main section[id], main article[id]"),
     ];
-    const visible = new Set();
+    const visibleFrames = new Set();
     const focused = new Set();
     const frames = [...document.querySelectorAll("[data-project-frame]")];
+    const revealStates = new WeakMap();
     let hasScrolled = scrollY > 0;
     let frame = 0,
-      current = "";
+      current = "",
+      wasCompact = null;
     function render() {
       frame = 0;
       const height = innerHeight;
       const scroll = scrollY;
+      const compact = innerWidth < 800;
       const total = document.documentElement.scrollHeight - height;
-      const frameRects = frames.map((element) => ({
-        element,
-        rect: element.getBoundingClientRect(),
-      }));
-      const measured = [...visible].map((element) => ({
-        element,
-        rect: element.getBoundingClientRect(),
-      }));
+      if (compact && wasCompact !== true) {
+        frames.forEach((element) => {
+          element.style.clipPath = "";
+        });
+        targets.forEach((element) => {
+          element.style.clipPath = "";
+        });
+      }
+      wasCompact = compact;
+      const frameRects = compact
+        ? []
+        : [...visibleFrames].map((element) => ({
+            element,
+            rect: element.getBoundingClientRect(),
+          }));
+      const measured = compact
+        ? []
+        : targets.map((element) => ({
+            element,
+            rect: element.getBoundingClientRect(),
+          }));
       let next = "top";
       for (const section of sections)
         if (section.getBoundingClientRect().top < height * 0.45)
@@ -81,8 +97,12 @@ export default function ScrollChoreography({ sectionItems = SECTIONS }) {
                   hasScrolled ? (height - rect.top) / (height * 0.5) : 0,
                 ),
               );
-        element.style.clipPath =
+        const clipPath =
           p === 1 ? "none" : `inset(0 ${(1 - p) * 100}% 0 0)`;
+        if (revealStates.get(element) !== clipPath) {
+          element.style.clipPath = clipPath;
+          revealStates.set(element, clipPath);
+        }
         element.dataset.reveal = p.toFixed(3);
       }
     }
@@ -102,16 +122,25 @@ export default function ScrollChoreography({ sectionItems = SECTIONS }) {
     };
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) =>
-          entry.isIntersecting
-            ? visible.add(entry.target)
-            : visible.delete(entry.target),
-        );
+        entries.forEach((entry) => {
+          entry.target.dataset.imageVisible = String(entry.isIntersecting);
+        });
         schedule();
       },
-      { rootMargin: "100px" },
+      { threshold: 0.08, rootMargin: "40px 0px" },
+    );
+    const frameObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visibleFrames.add(entry.target);
+          else visibleFrames.delete(entry.target);
+        });
+        schedule();
+      },
+      { rootMargin: "100px 0px" },
     );
     targets.forEach((target) => observer.observe(target));
+    frames.forEach((target) => frameObserver.observe(target));
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", schedule);
     document.addEventListener("focusin", onFocus);
@@ -119,6 +148,7 @@ export default function ScrollChoreography({ sectionItems = SECTIONS }) {
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
+      frameObserver.disconnect();
       removeEventListener("scroll", onScroll);
       removeEventListener("resize", schedule);
       document.removeEventListener("focusin", onFocus);
@@ -127,6 +157,7 @@ export default function ScrollChoreography({ sectionItems = SECTIONS }) {
       });
       targets.forEach((target) => {
         target.style.clipPath = "";
+        delete target.dataset.imageVisible;
       });
     };
   }, [paused, reduced, setActiveSection]);

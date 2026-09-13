@@ -124,7 +124,6 @@ export default function LandingShader() {
     };
     element.addEventListener("webglcontextlost", onLoss);
     addEventListener("resize", onResize);
-    addEventListener("scroll", sync, { passive: true });
     document.addEventListener("visibilitychange", sync);
     resize();
     sync();
@@ -132,7 +131,6 @@ export default function LandingShader() {
       cancelAnimationFrame(frame);
       observer.disconnect();
       removeEventListener("resize", onResize);
-      removeEventListener("scroll", sync);
       document.removeEventListener("visibilitychange", sync);
       element.removeEventListener("webglcontextlost", onLoss);
       gl.deleteBuffer(buffer);

@@ -19,18 +19,22 @@ export default function StoryScene({
     const front = section.querySelector(".story-front");
     let frame = 0;
     let visible = true;
+    let enhanced = false;
     const quiet =
       paused ||
       reduced ||
       matchMedia("(prefers-reduced-motion: reduce)").matches;
     function draw() {
       frame = 0;
+      const supportsScrollMask = innerWidth >= 800 && innerHeight >= 700;
       let enabled =
-        !quiet && (!desktopOnly || (innerWidth >= 800 && innerHeight >= 700));
+        !quiet && supportsScrollMask && (!desktopOnly || supportsScrollMask);
+      enhanced = enabled;
       section.dataset.enhanced = String(enabled);
       // Parametric biography copy must never be trapped in a fixed viewport.
       if (enabled && desktopOnly && face.scrollHeight > innerHeight + 2) {
         enabled = false;
+        enhanced = false;
         section.dataset.enhanced = "false";
       }
       if (!enabled) {
@@ -53,7 +57,7 @@ export default function StoryScene({
       section.dataset.progress = reveal.toFixed(3);
     }
     function schedule() {
-      if (!frame && visible) frame = requestAnimationFrame(draw);
+      if (!frame && visible && enhanced) frame = requestAnimationFrame(draw);
     }
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -65,7 +69,9 @@ export default function StoryScene({
     observer.observe(section);
     const resize = () => {
       visible = true;
-      schedule();
+      cancelAnimationFrame(frame);
+      frame = 0;
+      draw();
     };
     addEventListener("scroll", schedule, { passive: true });
     addEventListener("resize", resize);

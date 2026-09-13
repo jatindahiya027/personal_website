@@ -7,6 +7,26 @@ const source = await readFile(
   new URL("../src/app/data/portfolio.js", import.meta.url),
   "utf8",
 );
+const layoutSource = await readFile(
+  new URL("../src/app/layout.js", import.meta.url),
+  "utf8",
+);
+const chromeSource = await readFile(
+  new URL("../src/app/components/SiteChrome.js", import.meta.url),
+  "utf8",
+);
+const homeSource = await readFile(
+  new URL("../src/app/components/PortfolioHome.js", import.meta.url),
+  "utf8",
+);
+const choreographySource = await readFile(
+  new URL("../src/app/components/ScrollChoreography.js", import.meta.url),
+  "utf8",
+);
+const greetingSource = await readFile(
+  new URL("../src/app/components/FirstVisitGreeting.js", import.meta.url),
+  "utf8",
+);
 const { PROJECTS, getProjectImages, getNextProject } = await import(
   `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`
 );
@@ -64,4 +84,29 @@ test("every local project screenshot exists", async () => {
         await access(resolve("public", `.${image.src}`));
     }
   }
+});
+
+test("the greeting is selected before paint and never opened after hydration", () => {
+  assert.match(layoutSource, /dataset\.intro=.*portfolio-welcomed-v3/);
+  assert.match(layoutSource, /<FirstVisitGreeting/);
+  assert.doesNotMatch(layoutSource, /portfolio-welcomed-v2/);
+  assert.doesNotMatch(greetingSource, /showModal|clipPath/);
+  assert.match(greetingSource, /setTimeout\(leave, 1750\)/);
+});
+
+test("header and hero use the requested labels and expose no motion control", () => {
+  assert.match(chromeSource, />\s*Resume\s*</);
+  assert.doesNotMatch(chromeSource, /Résumé|motion-toggle|Pause motion|Play motion/);
+  assert.match(homeSource, /Meet me/);
+  assert.doesNotMatch(homeSource, /Meet Jatin|résumé/);
+});
+
+test("project reveals avoid mobile masks and clipped-observer feedback loops", () => {
+  assert.match(choreographySource, /const compact = innerWidth < 800/);
+  assert.match(choreographySource, /const frameRects = compact\s*\? \[\]/);
+  assert.match(
+    choreographySource,
+    /const measured = compact\s*\? \[\]\s*: targets\.map/,
+  );
+  assert.doesNotMatch(choreographySource, /\[\.\.\.visible\]/);
 });

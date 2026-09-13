@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#f7f7f7" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var quiet=matchMedia('(prefers-reduced-motion: reduce)').matches||localStorage.getItem('portfolio-motion')==='paused';document.documentElement.dataset.intro=!quiet&&!sessionStorage.getItem('portfolio-welcomed-v2')?'pending':'done';document.documentElement.dataset.motion=quiet?'quiet':'full';}catch(e){document.documentElement.dataset.intro='done';}})();`,
+            __html: `(function(){try{var quiet=matchMedia('(prefers-reduced-motion: reduce)').matches;document.documentElement.dataset.motion=quiet?'quiet':'full';document.documentElement.dataset.intro=quiet||sessionStorage.getItem('portfolio-welcomed-v3')?'done':'pending';}catch(e){document.documentElement.dataset.motion='full';document.documentElement.dataset.intro='done';}})();`,
           }}
         />
         <script

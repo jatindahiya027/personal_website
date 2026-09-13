@@ -149,9 +149,6 @@ a {
 .text-mask[data-ready="true"] > span {
   animation: line-uncover 1800ms cubic-bezier(0.22, 0.65, 0.25, 1) both;
 }
-html[data-intro="pending"] .text-mask > span {
-  visibility: hidden;
-}
 @keyframes line-uncover {
   from {
     clip-path: inset(100% 0 0 0);
@@ -296,10 +293,6 @@ html[data-intro="pending"] .text-mask > span {
   padding: 8px 16px;
   margin-left: 8px;
   gap: 9px;
-}
-.motion-toggle {
-  width: 36px;
-  height: 40px;
 }
 .menu-toggle {
   display: none;
@@ -1218,28 +1211,24 @@ html[data-intro="pending"] .text-mask > span {
   background: #e9e9e9;
   font-size: 14px;
 }
-/* A readable greeting, followed by a full-height curtain and then the hero. */
+/* First-visit curtain: server-rendered and gated before paint by data-intro. */
 .greeting {
-  border: 0;
-  padding: 48px var(--page-gutter);
-  margin: 0;
+  display: none;
   position: fixed;
+  z-index: 100;
   inset: 0;
-  max-width: none;
-  max-height: none;
-  width: 100%;
-  height: 100dvh;
+  padding: 48px var(--page-gutter);
   background: #101010;
   color: #fafafa;
-  z-index: 100;
+  transform: translate3d(0, 0, 0);
 }
-.greeting[open] {
+html[data-intro="pending"] .greeting {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.greeting::backdrop {
-  background: transparent;
+.greeting[data-phase="leaving"] {
+  animation: greeting-leave 660ms cubic-bezier(0.77, 0, 0.175, 1) both;
 }
 .greeting-name {
   font-size: 14px;
@@ -1255,17 +1244,37 @@ html[data-intro="pending"] .text-mask > span {
   line-height: 1.06;
   letter-spacing: -0.065em;
   font-weight: 600;
+  animation: greeting-line-enter 540ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 .greeting-line:nth-child(2) {
   color: #999;
+  animation-delay: 100ms;
 }
 .greeting-message p {
-  font-size: 16px;
-  color: #aaa;
   margin-top: 30px;
+  color: #aaa;
+  font-size: 16px;
+  animation: greeting-detail-enter 420ms 180ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 .greeting-enter {
   align-self: flex-end;
+}
+@keyframes greeting-line-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+}
+@keyframes greeting-detail-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+}
+@keyframes greeting-leave {
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
 }
 /* Project pages reuse the same artboard and reading rhythm. */
 .project-detail-hero {
@@ -1466,9 +1475,6 @@ html[data-intro="pending"] .text-mask > span {
     margin-left: 0;
     gap: 6px;
   }
-  .motion-toggle {
-    width: 30px;
-  }
   .menu-toggle {
     display: flex;
     width: 32px;
@@ -1575,6 +1581,39 @@ html[data-intro="pending"] .text-mask > span {
   }
   .work-project > [data-image-reveal] {
     width: min(100%, calc(clamp(145px, 100svh - 445px, 320px) * 1.6));
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    clip-path: none !important;
+  }
+  .work-project > [data-image-reveal]::after {
+    content: "";
+    position: absolute;
+    z-index: 5;
+    inset: -1px;
+    pointer-events: none;
+    background: var(--paper);
+    transform: scaleX(1);
+    transform-origin: right center;
+    transition: transform 560ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .work-project > [data-image-reveal][data-image-visible="true"]::after {
+    transform: scaleX(0);
+  }
+  .greeting {
+    padding: 30px 24px;
+  }
+  .greeting-message {
+    padding-bottom: 40px;
+  }
+  .greeting-line {
+    font-size: clamp(58px, 14vw, 86px);
+  }
+  .greeting-message p {
+    font-size: 14px;
+  }
+  .greeting-enter {
+    font-size: 12px;
   }
   .work-project .artboard-image {
     height: auto;
@@ -1740,21 +1779,6 @@ html[data-intro="pending"] .text-mask > span {
   }
   .site-footer > span:nth-child(2) {
     display: none;
-  }
-  .greeting {
-    padding: 30px 24px;
-  }
-  .greeting-message {
-    padding-bottom: 40px;
-  }
-  .greeting-line {
-    font-size: clamp(68px, 14vw, 100px);
-  }
-  .greeting-message p {
-    font-size: 14px;
-  }
-  .greeting-enter {
-    font-size: 12px;
   }
   .project-detail-hero {
     padding-top: 110px;
