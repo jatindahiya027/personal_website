@@ -4,7 +4,6 @@
  */
 import { getBlogBySlug, getAllSlugs } from "../../data/blogs";
 import { notFound } from "next/navigation";
-import { PERSONAL } from "../../data/portfolio";
 import BlogPostClient from "./BlogPostClient";
 
 /* Tells Next.js which slugs to pre-render at build time (required for static export) */
@@ -16,7 +15,8 @@ export function generateMetadata({ params }) {
   const post = getBlogBySlug(params.slug);
   if (!post) return { title: "Post not found" };
   return {
-    title:       `${post.title} — ${PERSONAL.name}`,
+    title: post.title,
+    alternates: { canonical: `/blog/${post.slug}/` },
     description: post.excerpt,
   };
 }

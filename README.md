@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Jatin Dahiya's portfolio
 
-## Getting Started
+A responsive Next.js portfolio with neutral surfaces, full-color imagery, a layered project carousel, a subtle grayscale landing shader, scroll masks, animated typography, and unlimited project galleries.
 
-First, run the development server:
+## Develop
 
-```bash
+```sh
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Verify and preview the production site
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```sh
+npm test
+npm run lint
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The build generates a fully static `out/` directory. `npm start` uses the included local server at `http://127.0.0.1:3000`; it needs no runtime package downloads.
 
-## Learn More
+## Edit content
 
-To learn more about Next.js, take a look at the following resources:
+Update `src/app/data/portfolio.js` to change your personal details, résumé, section text, experience, skills, projects, links, or images. Projects accept optional `github`, `url`, and additional `links`. One reusable artboard accepts any number of image paths or image objects with alt text and captions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See [CONTENT_UPDATE_GUIDE.md](CONTENT_UPDATE_GUIDE.md) for portfolio examples, [AUTHORING_GUIDE.md](AUTHORING_GUIDE.md) for project links and writing templates (including images and videos), and [DESIGN.md](DESIGN.md) for the visual system and motion budget.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Motion and performance
 
-## Deploy on Vercel
+The site uses CSS, the Web Animations API, native view transitions, and a small landing-only WebGL shader capped at 480px and 20fps. The project carousel, shader, and text motion respect global pause and reduced-motion settings. Automatic motion stops when hidden or offscreen. Fonts are self-hosted; no animation framework is required.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Publish `out/` to static hosting such as GitHub Pages. Rebuild after changing content. The Next configuration uses static export and trailing-slash URLs. Custom domains/root sites work directly; a repository subpath deployment also requires a consistent base path for local assets and navigation.

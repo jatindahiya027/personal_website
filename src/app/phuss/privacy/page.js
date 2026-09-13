@@ -1,6 +1,6 @@
 export default function PrivacyPolicy() {
   return (
-    <main className="max-w-3xl mx-auto p-6 text-gray-800">
+    <main id="main-content" className="legal-page">
       <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
 
       <p className="mb-4">Last updated: July 6, 2025</p>
@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
         </li>
       </ul>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">3. Children's Privacy</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">3. Children&apos;s Privacy</h2>
       <p className="mb-4">
         The Game is intended for general audiences. We do not knowingly collect any personal information from children under the age of 13.
       </p>

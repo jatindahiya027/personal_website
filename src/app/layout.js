@@ -1,36 +1,69 @@
 import "./globals.css";
+import MotionProvider from "./components/MotionProvider";
+import FirstVisitGreeting from "./components/FirstVisitGreeting";
+import { PERSONAL, EXPERIENCE, SOCIALS, EDUCATION } from "./data/portfolio";
 
 export const metadata = {
-  title: "Jatin Dahiya",
-  description:
-    "Explore the personal portfolio of Jatin Dahiya, an engineer at TCS and alumnus of LNMIIT, showcasing projects, skills, and achievements.",
+  metadataBase: new URL(PERSONAL.website),
+  title: {
+    default: `${PERSONAL.name} | ${PERSONAL.role}`,
+    template: `%s | ${PERSONAL.name}`,
+  },
+  description: PERSONAL.heroDescription,
+  authors: [{ name: PERSONAL.name, url: PERSONAL.website }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: PERSONAL.website,
+    siteName: PERSONAL.name,
+    title: `${PERSONAL.name} | ${PERSONAL.role}`,
+    description: PERSONAL.heroDescription,
+    images: [{ url: PERSONAL.heroImageDesktop, alt: PERSONAL.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${PERSONAL.name} | ${PERSONAL.role}`,
+    description: PERSONAL.heroDescription,
+    images: [PERSONAL.heroImageDesktop],
+  },
+  icons: { icon: "/me.ico", shortcut: "/me.ico", apple: "/me.ico" },
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: PERSONAL.name,
+  url: PERSONAL.website,
+  image: new URL(PERSONAL.photo, PERSONAL.website).href,
+  jobTitle: PERSONAL.role,
+  worksFor: { "@type": "Organization", name: EXPERIENCE[0]?.company },
+  alumniOf: { "@type": "CollegeOrUniversity", name: EDUCATION[0]?.institution },
+  sameAs: SOCIALS.map((social) => social.href),
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="author" content="Jatin Dahiya" />
-        <meta name="keywords" content="Jatin Dahiya, Engineer, TCS, LNMIIT, Portfolio, Software Engineer, Technology" />
-        <meta property="og:title" content={metadata.title} />
-        <meta property="og:description" content={metadata.description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/final3.webp" />
-        <meta property="og:url" content="https://jatindahiya.com/" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metadata.title} />
-        <meta name="twitter:description" content={metadata.description} />
-        <meta name="twitter:image" content="/final3.webp" />
-        <link rel="icon" href="/me.ico" type="image/x-icon" />
-        {/* Self-host via next/font or use Google Fonts with preconnect for fast loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="theme-color" content="#f7f7f7" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var quiet=matchMedia('(prefers-reduced-motion: reduce)').matches||localStorage.getItem('portfolio-motion')==='paused';document.documentElement.dataset.intro=!quiet&&!sessionStorage.getItem('portfolio-welcomed-v2')?'pending':'done';document.documentElement.dataset.motion=quiet?'quiet':'full';}catch(e){document.documentElement.dataset.intro='done';}})();`,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
       </head>
       <body>
-        <a href="#main-content" className="skip-link">Skip to main content</a>
-        {children}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <MotionProvider>
+          <FirstVisitGreeting />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );
